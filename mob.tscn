@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dlvkowgivu867"]
+
+[ext_resource type="PackedScene" uid="uid://bicorb7we351t" path="res://art/mob.glb" id="1_88tle"]
+[ext_resource type="Script" uid="uid://gioqk351redl" path="res://squashTheCreeps-main/mob.gd" id="1_y12mu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smrfm"]
+size = Vector3(1.6125488, 1, 2.1496582)
+
+[node name="Mob" type="CharacterBody3D" unique_id=2065330153]
+script = ExtResource("1_y12mu")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1803510234]
+
+[node name="Character" parent="Pivot" unique_id=475056594 instance=ExtResource("1_88tle")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1955709383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05871582, 0.19149256, -0.052612305)
+shape = SubResource("BoxShape3D_smrfm")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=1791593696]
+aabb = AABB(-1, -1, -2, 2, 2, 4)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
